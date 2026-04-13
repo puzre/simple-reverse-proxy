@@ -7,7 +7,7 @@ import jakarta.ws.rs.core.MediaType;
 
 import java.util.Map;
 
-@Path("/quarkus/hello-world")
+@Path("hello-world")
 public class HelloWorldResource {
 
     @GET

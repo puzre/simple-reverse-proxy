@@ -7,10 +7,11 @@ services:
       - "50:80"
       - "5050:8080"
     command:
+      - "--entryPoints.web.address=:80"
       - "--providers.swarm.endpoint=unix:///var/run/docker.sock"
       - "--providers.swarm.network=traefik-network"
       - "--api.insecure=true"
-      - "-log.level=DEBUG"
+      - "--log.level=DEBUG"
       - "--global.checkNewVersion=false"
       - "--global.sendAnonymousUsage=false"
     deploy:
@@ -25,6 +26,26 @@ services:
           memory: 250M
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+
+  quarkus-api:
+    networks:
+      - traefik-network
+    image: quarkus-api-image
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 250M
+      labels:
+        - "traefik.enable=true"
+        - "traefik.swarm.network=traefik-network"
+        - "traefik.http.routers.quarkus-api.rule=PathPrefix(`/quarkus`)"
+        - "traefik.http.routers.quarkus-api.entrypoints=web"
+        - "traefik.http.routers.quarkus-api.service=quarkus-api"
+        - "traefik.http.services.quarkus-api.loadbalancer.server.port=8080"
+        - "traefik.http.middlewares.quarkus-api-strip.stripprefix.prefixes=/quarkus"
+        - "traefik.http.routers.quarkus-api.middlewares=quarkus-api-strip@swarm"
+        - "traefik.http.services.quarkus-api.loadbalancer.healthcheck.path=/q/health"
 
 networks:
   traefik-network:
