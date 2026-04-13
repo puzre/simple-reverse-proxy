@@ -1,0 +1,6 @@
+#Quarkus folders and files
+quarkus-hello-world/*
+!quarkus-hello-world/target/*-runner
+!quarkus-hello-world/target/*-runner.jar
+!quarkus-hello-world/target/lib/*
+!quarkus-hello-world/target/quarkus-app/*

@@ -1,0 +1,26 @@
+#Quarkus folders and files
+quarkus-hello-world/target/
+quarkus-hello-world/pom.xml.tag
+quarkus-hello-world/pom.xml.releaseBackup
+quarkus-hello-world/pom.xml.versionsBackup
+quarkus-hello-world/release.properties
+quarkus-hello-world/.flattened-pom.xml
+quarkus-hello-world/.project
+quarkus-hello-world/.classpath
+quarkus-hello-world/.settings/
+quarkus-hello-world/bin/
+quarkus-hello-world/.idea
+quarkus-hello-world/*.ipr
+quarkus-hello-world/*.iml
+quarkus-hello-world/*.iws
+quarkus-hello-world/nb-configuration.xml
+quarkus-hello-world/.vscode
+quarkus-hello-world/.factorypath
+quarkus-hello-world/.DS_Store
+quarkus-hello-world/*.swp
+quarkus-hello-world/*.swo
+quarkus-hello-world/*.orig
+quarkus-hello-world/*.rej
+quarkus-hello-world/.env
+quarkus-hello-world/.quarkus/cli/plugins/
+quarkus-hello-world/.certs/
