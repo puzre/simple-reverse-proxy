@@ -1,15 +1,24 @@
 services:
   traefik-reverse-proxy:
-    image: traefik:v3.0
-    container_name: traefik-rev-proxy-container
-    command:
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--entrypoints.web.address=:80"
+    networks:
+      - traefik-network
+    image: traefik:v3.6
     ports:
       - "50:80"
       - "5050:8080"
+    command:
+      - "--providers.swarm.endpoint=unix:///var/run/docker.sock"
+      - "--providers.swarm.network=traefik-network"
+      - "--api.insecure=true"
+      - "-log.level=DEBUG"
+      - "--global.checkNewVersion=false"
+      - "--global.sendAnonymousUsage=false"
     deploy:
+      labels:
+        - "traefik.enable=false"
+      placement:
+        constraints:
+          - node.role==manager
       resources:
         limits:
           cpus: "0.5"
@@ -17,19 +26,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
-  quarkus-hello-world-api:
-    build:
-      context: ./quarkus-hello-world
-      dockerfile: src/main/docker/Dockerfile.native
-    image: native-quarkus-hello-world-api
-    ports:
-      - ":8080"
-    deploy:
-      resources:
-        limits:
-          cpus: "0.5"
-          memory: 250M
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.quarkus.rule=PathPrefix(`/quarkus`)"
-      - "traefik.http.services.quarkus.loadbalancer.server.port=8080"
+networks:
+  traefik-network:
+    driver: overlay
