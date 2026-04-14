@@ -47,6 +47,28 @@ services:
         - "traefik.http.routers.quarkus-api.middlewares=quarkus-api-strip@swarm"
         - "traefik.http.services.quarkus-api.loadbalancer.healthcheck.path=/q/health"
 
+  laravel-api:
+    networks:
+      - traefik-network
+    image: laravel-api-image
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 250M
+      labels:
+        - "traefik.enable=true"
+        - "traefik.swarm.network=traefik-network"
+        - "traefik.http.routers.laravel-api.rule=PathPrefix(`/laravel`)"
+        - "traefik.http.routers.laravel-api.entrypoints=web"
+        - "traefik.http.routers.laravel-api.service=laravel-api"
+        - "traefik.http.services.laravel-api.loadbalancer.server.port=8000"
+        - "traefik.http.middlewares.laravel-api-strip.stripprefix.prefixes=/laravel"
+        - "traefik.http.routers.laravel-api.middlewares=laravel-api-strip@swarm"
+        - "traefik.http.services.laravel-api.loadbalancer.healthcheck.path=/up"
+        - "traefik.http.services.laravel-api.loadbalancer.healthcheck.interval=10s"
+        - "traefik.http.services.laravel-api.loadbalancer.healthcheck.timeout=3s"
+
 networks:
   traefik-network:
     driver: overlay

@@ -24,3 +24,32 @@ quarkus-hello-world/*.rej
 quarkus-hello-world/.env
 quarkus-hello-world/.quarkus/cli/plugins/
 quarkus-hello-world/.certs/
+
+#Docker folders and files
+.idea/
+
+#Laravel folders and files
+laravel-hello-world/*.log
+laravel-hello-world/.DS_Store
+laravel-hello-world/.env.backup
+laravel-hello-world/.env.production
+laravel-hello-world/.phpactor.json
+laravel-hello-world/.phpunit.result.cache
+laravel-hello-world/.fleet
+laravel-hello-world/.idea
+laravel-hello-world/.nova
+laravel-hello-world/.phpunit.cache
+laravel-hello-world/.vscode
+laravel-hello-world/.zed
+laravel-hello-world/auth.json
+laravel-hello-world/node_modules
+laravel-hello-world/public/build
+laravel-hello-world/public/hot
+laravel-hello-world/public/storage
+laravel-hello-world/storage/*.key
+laravel-hello-world/storage/pail
+laravel-hello-world/vendor
+laravel-hello-world/_ide_helper.php
+laravel-hello-world/Homestead.json
+laravel-hello-world/Homestead.yaml
+laravel-hello-world/Thumbs.db
