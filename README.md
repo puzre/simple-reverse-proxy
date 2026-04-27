@@ -9,9 +9,9 @@ graph TD
 
     subgraph "Endpoints"
         direction LR
-        QReq["GET http://localhost:50/quarkus/hello"]
+        QReq["GET http://localhost:50/quarkus/hello"-world]
         DReq["GET http://localhost:5050/dashboard/"]
-        LReq["GET http://localhost:50/laravel/hello"]
+        LReq["GET http://localhost:50/laravel/hello-world"]
     end
 
     Client --> QReq
@@ -52,34 +52,8 @@ graph TD
 
 ## How to Run Project
 
-### Quarkus API
-
-First of all, make sure you are in the `quarkus-hello-world` folder.
-
-1. Compile Quarkus Project (native way)
-
-   ```bash
-   ./mvnw package -Dnative -Dquarkus.native.container-build=true
-   ```
-
-2. Create Docker Image
-
-   ```bash
-   docker build -f src/main/docker/Dockerfile.native -t quarkus-api-image .
-   ```
-
-### Laravel API
-
-First of all, make sure you are in the `laravel-hello-world` folder.
-
-1. Create Docker Image
-
-   ```bash
-   docker build -t laravel-api-image .
-   ```
-
 ### Docker Compose
-After you create laravel-api-image and quarkus-api-image you can run the docker-compose.yaml
+Run the docker-compose.yaml
 
 1. Deploy stack
 

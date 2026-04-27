@@ -30,7 +30,7 @@ services:
   quarkus-api:
     networks:
       - traefik-network
-    image: quarkus-api-image
+    image: ghcr.io/puzre/quarkus-hello-api:1.0.0
     deploy:
       resources:
         limits:
@@ -50,7 +50,7 @@ services:
   laravel-api:
     networks:
       - traefik-network
-    image: laravel-api-image
+    image: ghcr.io/puzre/laravel-hello-api:1.0.0
     deploy:
       resources:
         limits:
