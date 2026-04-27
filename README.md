@@ -1,5 +1,5 @@
 # Simple Reverse Proxy
-This project shows how to create a simple reverse proxy with Treafik responsible for routing two web services (Quarkus and Laravel API) in a Docker Swarm enviroment.
+This project shows how to create a simple reverse proxy with Treafik responsible for routing two web services (Quarkus and Laravel API) in a Docker Swarm environment.
 
 ## Reverse Proxy Topology
 
